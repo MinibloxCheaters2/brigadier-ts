@@ -31,9 +31,9 @@ export class CommandDispatcher<S> {
         return build;
     }
 
-    execute(parse: ParseResults<S> | string, source: S): number {
+    async execute(parse: ParseResults<S> | string, source: S): Promise<number> {
         if (typeof(parse) === "string") {
-            parse = this.parse(new StringReader(parse), source);
+            parse = await this.parse(new StringReader(parse), source);
         }
 
         if (parse.getReader().canRead()) {
@@ -81,7 +81,7 @@ export class CommandDispatcher<S> {
                 } else if (context.getCommand()) {
                     foundCommand = true;
                     try {
-                        const value = context.getCommand()(context);
+                        const value = await context.getCommand()(context);
                         result += (value || value === 0) ? value : 1;
                         successfulForks++;
                     } catch (e) {
@@ -99,20 +99,20 @@ export class CommandDispatcher<S> {
         return forked ? successfulForks : result;
     }
 
-    parse(reader: StringReader | string, source: S): ParseResults<S> {
+    async parse(reader: StringReader | string, source: S): Promise<ParseResults<S>> {
         reader = new StringReader(reader);
         const context = new CommandContextBuilder<S>(this, source, this.root, reader.getCursor());
         return this.parseNodes(this.root, reader, context);
     }
 
-    private parseNodes(node: CommandNode<S>, originalReader: StringReader, contextSoFar: CommandContextBuilder<S>): ParseResults<S> {
+    private async parseNodes(node: CommandNode<S>, originalReader: StringReader, contextSoFar: CommandContextBuilder<S>): Promise<ParseResults<S>> {
         const source = contextSoFar.getSource();
         const errors = new Map<CommandNode<S>, CommandSyntaxError>();
         let potentials = [];
         const cursor = originalReader.getCursor();
 
         for (const child of node.getRelevantNodes(originalReader)) {
-            if (!child.canUse(source)) {
+            if (!await child.canUse(source)) {
                 continue;
             }
             const context = contextSoFar.copy();
@@ -146,7 +146,7 @@ export class CommandDispatcher<S> {
                 reader.skip();
                 if (child.getRedirect()) {
                     const childContext = new CommandContextBuilder<S>(this, source, child.getRedirect(), reader.getCursor());
-                    const parse = this.parseNodes(child.getRedirect(), reader, childContext);
+                    const parse = await this.parseNodes(child.getRedirect(), reader, childContext);
                     context.withChild(parse.getContext());
                     return new ParseResults<S>(context, parse.getReader(), parse.getErrors());
                 } else {
@@ -162,14 +162,14 @@ export class CommandDispatcher<S> {
         return potentials[0];
     }
 
-    getAllUsage(node: CommandNode<S>, source: S, restricted: boolean): String[] {
+    async getAllUsage(node: CommandNode<S>, source: S, restricted: boolean): Promise<string[]> {
         const result = [];
-        this.getAllUsageImpl(node, source, result, "", restricted);
+        await this.getAllUsageImpl(node, source, result, "", restricted);
         return result;
     }
 
-    private getAllUsageImpl(node: CommandNode<S>, source: S, result: String[], prefix: string, restricted: boolean): void {
-        if (restricted && !node.canUse(source)) {
+    private async getAllUsageImpl(node: CommandNode<S>, source: S, result: string[], prefix: string, restricted: boolean): Promise<void> {
+        if (restricted && !await node.canUse(source)) {
             return;
         }
 
@@ -183,7 +183,7 @@ export class CommandDispatcher<S> {
         } else if (node.getChildren().length > 0) {
             for (const child of node.getChildren()) {
                 const newPrefix = prefix.length === 0 ? child.getUsageText() : prefix + " " + child.getUsageText();
-                this.getAllUsageImpl(child, source, result, newPrefix, restricted);
+                await this.getAllUsageImpl(child, source, result, newPrefix, restricted);
             }
         }
     }

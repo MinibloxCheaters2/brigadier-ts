@@ -1,36 +1,36 @@
 import { argument, CommandDispatcher, FloatArgumentType, IntegerArgumentType, literal, LongArgumentType } from '../src'
 
 describe('Arguments', () => {
-	test('Integer', () => {
+	test('Integer', async () => {
 		const dispatcher = new CommandDispatcher()
 		dispatcher.register(literal('foo')
 			.then(argument('bar', new IntegerArgumentType())
-				.executes(ctx => ctx.get('bar') * 2)
+				.executes(async ctx => ctx.get('bar') * 2)
 			)
 		)
-		const result = dispatcher.execute('foo 6', undefined)
+		const result = await dispatcher.execute('foo 6', undefined)
 		expect(result).toEqual(12)
 	})
 
-	test('Long', () => {
+	test('Long', async () => {
 		const dispatcher = new CommandDispatcher()
 		dispatcher.register(literal('foo')
 			.then(argument('bar', new LongArgumentType())
-				.executes(ctx => ctx.get('bar').toString().length)
+				.executes(async ctx => ctx.get('bar').toString().length)
 			)
 		)
-		const result = dispatcher.execute('foo 123456789012345', undefined)
+		const result = await dispatcher.execute('foo 123456789012345', undefined)
 		expect(result).toEqual(15)
 	})
 
-	test('Float', () => {
+	test('Float', async () => {
 		const dispatcher = new CommandDispatcher()
 		dispatcher.register(literal('foo')
 			.then(argument('bar', new FloatArgumentType())
-				.executes(ctx => Math.floor(ctx.get('bar')))
+				.executes(async ctx => Math.floor(ctx.get('bar')))
 			)
 		)
-		const result = dispatcher.execute('foo 6.2', undefined)
+		const result = await dispatcher.execute('foo 6.2', undefined)
 		expect(result).toEqual(6)
 	})
 })

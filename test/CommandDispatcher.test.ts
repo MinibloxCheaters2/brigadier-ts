@@ -5,21 +5,21 @@ describe('CommandDispatcher', () => {
 		const dispatcher = new CommandDispatcher()
 	})
 
-	test('execute', () => {
+	test('execute', async () => {
 		const dispatcher = new CommandDispatcher()
 		dispatcher.register(literal('foo')
-			.executes(() => 2)
+			.executes(async () => 2)
 		)
-		const result = dispatcher.execute('foo', undefined)
+		const result = await dispatcher.execute('foo', undefined)
 		expect(result).toEqual(2)
 	})
 
-	test('execute (zero result)', () => {
+	test('execute (zero result)', async () => {
 		const dispatcher = new CommandDispatcher()
 		dispatcher.register(literal('foo')
-			.executes(() => 0)
+			.executes(async () => 0)
 		)
-		const result = dispatcher.execute('foo', undefined)
+		const result = await dispatcher.execute('foo', undefined)
 		expect(result).toEqual(0)
 	})
 })

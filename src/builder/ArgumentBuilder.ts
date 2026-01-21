@@ -18,7 +18,7 @@ export abstract class ArgumentBuilder<S, T extends ArgumentBuilder<S, T>> {
 
     constructor() {
         this.arguments = new RootCommandNode();
-        this.requirement = s => true;
+        this.requirement = async s => true;
     }
 
     abstract getThis(): T;

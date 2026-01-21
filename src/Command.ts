@@ -1,3 +1,3 @@
-import { CommandContext } from ".";
+import { CommandContext } from "./";
 
-export type Command<S> = (c: CommandContext<S>) => number | void;
+export type Command<S> = (c: CommandContext<S>) => Promise<number | void>;
