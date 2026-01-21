@@ -1,0 +1,49 @@
+name: Publish
+
+on:
+    push:
+      tags:
+        - v*
+    workflow_dispatch:
+        inputs:
+            tag_name:
+                description: Version to publish
+                required: true
+                type: string
+            release_name:
+                description: GitHub Release name
+                required: true
+                type: string
+
+jobs:
+    publish:
+        environment: a
+        runs-on: ubuntu-slim
+        # TODO: also publish to GitHub packages (because why not)
+        permissions:
+            id-token: write # Required for OIDC
+            contents: write
+            packages: write
+
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-node@v6
+              with:
+                node-version: '24'
+
+            - name: Install & Build
+              run: npm install && npm build
+
+            - name: Publish (npm)
+              run: npm publish --registry=https://registry.npmjs.org/ --loglevel info
+              env:
+                GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+                NPM_TOKEN: ${{ env.GITHUB_TOKEN }}
+
+            - name: Create GitHub release
+              uses: softprops/action-gh-release@v2
+              with:
+                tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
+                name: ${{ github.event.inputs.release_name || github.ref_name }}
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

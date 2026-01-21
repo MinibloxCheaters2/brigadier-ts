@@ -1,14 +1,22 @@
 # Brigadier-ts
-TypeScript port of [Mojang/brigadier](https://github.com/Mojang/brigadier)
+
+Fork of [brigadier-ts](https://github.com/misode/brigadier-ts) with some changes:
+
+- (breaking change) Predicates and Commands are async
+- Update branding
+
+(not many, but we'll probably add more later)
 
 ## Installation
+
 ```
-npm install brigadier-ts
+npm install @wq2/brigadier-ts
 ```
 
 ## Usage
 
 #### Example using a command source
+
 ```js
 import {
     CommandDispatcher,
@@ -29,23 +37,24 @@ class CommandSource {
 
 const dispatcher = new CommandDispatcher<CommandSource>();
 dispatcher.register(literal("random")
-    .executes(c => 4)
+    .executes(async c => 4)
 );
 dispatcher.register(literal("double")
     .then(argument("value", new IntegerArgumentType())
-        .executes(c => 2 * c.get("value"))
+        .executes(async c => 2 * c.get("value"))
     )
 );
 dispatcher.register(literal("add")
-    .executes(c => 4 + c.getSource().getA())
+    .executes(async c => 4 + c.getSource().getA())
 );
 
-console.log(dispatcher.execute("random", null)); // 4
-console.log(dispatcher.execute("double 3", null)); // 6
-console.log(dispatcher.execute("add", new CommandSource(3))); // 7
+console.log(await dispatcher.execute("random", null)); // 4
+console.log(await dispatcher.execute("double 3", null)); // 6
+console.log(await dispatcher.execute("add", new CommandSource(3))); // 7
 ```
 
 #### Example using redirection and forking
+
 ```ts
 import {
     CommandDispatcher,
@@ -63,7 +72,7 @@ dispatcher.register(literal("execute")
     )
     .then(literal("enumerate")
         .then(argument("nums", new IntegerArgumentType())
-            .fork(execute, c => {
+            .fork(async execute, c => {
                 let list: number[] = [];
                 for (let i = c.get("nums"); i > 0; i--) {
                     list.push(i);
@@ -75,12 +84,12 @@ dispatcher.register(literal("execute")
 );
 
 dispatcher.register(literal("say")
-    .executes(c => {
+    .executes(async c => {
         console.log(c.getSource());
     })
 )
 
-console.log(dispatcher.execute("execute enumerate 5 run say", 0));
+console.log(await dispatcher.execute("execute enumerate 5 run say", 0));
 ```
 
 #### Example using suggestions and errors
@@ -95,12 +104,12 @@ import {
 const dispatcher = new CommandDispatcher<number>();
 dispatcher.register(literal("double")
     .then(argument("value", new IntegerArgumentType())
-        .executes(c => 2 * c.get("value"))
+        .executes(async c => 2 * c.get("value"))
     )
 );
 
 const getFeedback = async (command: string): Promise<string> => {
-    const parseResults = dispatcher.parse(command, null);
+    const parseResults = await dispatcher.parse(command, null);
     if (parseResults.getErrors().size > 0) {
         return command + " >> " + parseResults.getErrors().values().next().value.message;
     }
@@ -109,7 +118,7 @@ const getFeedback = async (command: string): Promise<string> => {
         const s = suggestions.getList()[0];
         return command + " >> S " + s.getText() + " (" + s.getRange().getStart() + ", " + s.getRange().getEnd() + ")";
     }
-    const usage = dispatcher.getAllUsage(parseResults.getContext().getRootNode(), null, false);
+    const usage = await dispatcher.getAllUsage(parseResults.getContext().getRootNode(), null, false);
     if (usage.length > 0) {
         return command + " >> U " + usage[0];
     }
