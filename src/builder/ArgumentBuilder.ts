@@ -22,7 +22,7 @@ export abstract class ArgumentBuilder<S, T extends ArgumentBuilder<S, T>> {
 	abstract getThis(): T;
 
 	// biome-ignore lint/suspicious/noThenProperty: proof?
-	then(argument: ArgumentBuilder<S, unknown> | CommandNode<S>): T {
+	then<A extends ArgumentBuilder<S, A>>(argument: ArgumentBuilder<S, A> | CommandNode<S>): T {
 		const child = argument instanceof CommandNode ? argument : argument.build();
 		this.arguments.addChild(child);
 		return this.getThis();
