@@ -1,19 +1,19 @@
-import { CommandNode, StringRange } from "..";
+import type { CommandNode, StringRange } from "..";
 
 export class ParsedCommandNode<S> {
-    private node: CommandNode<S>;
-    private range: StringRange;
-    
-    constructor(node: CommandNode<S>, range: StringRange) {
-        this.node = node;
-        this.range = range;
-    }
+	private node: CommandNode<S>;
+	private range: StringRange;
 
-    getNode(): CommandNode<S> {
-        return this.node;
-    }
+	constructor(node: CommandNode<S>, range: StringRange) {
+		this.node = node;
+		this.range = range;
+	}
 
-    getRange(): StringRange {
-        return this.range;
-    }
+	getNode(): CommandNode<S> {
+		return this.node;
+	}
+
+	getRange(): StringRange {
+		return this.range;
+	}
 }

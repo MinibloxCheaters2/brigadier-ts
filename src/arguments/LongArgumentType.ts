@@ -1,23 +1,22 @@
-import { StringReader, NumberArgumentType, CommandSyntaxError } from "..";
+import { type StringReader, NumberArgumentType, CommandSyntaxError } from "..";
 
-export class LongArgumentType extends NumberArgumentType<BigInt> {
+export class LongArgumentType extends NumberArgumentType<bigint> {
+	private static readonly MIN = -9223372036854775808n;
+	private static readonly MAX = 9223372036854775807n;
 
-    private static readonly MIN = BigInt("-9223372036854775808")
-    private static readonly MAX = BigInt("9223372036854775807")
+	constructor(minimum = LongArgumentType.MIN, maximum = LongArgumentType.MAX) {
+		super(minimum, maximum);
+	}
 
-    constructor(minimum = LongArgumentType.MIN, maximum = LongArgumentType.MAX) {
-        super(minimum, maximum);
-    }
+	readNumber(reader: StringReader): bigint {
+		return reader.readLong();
+	}
 
-    readNumber(reader: StringReader): BigInt {
-        return reader.readLong();
-    }
+	getTooSmallError() {
+		return CommandSyntaxError.LONG_TOO_SMALL;
+	}
 
-    getTooSmallError() {
-        return CommandSyntaxError.LONG_TOO_SMALL;
-    }
-
-    getTooBigError() {
-        return CommandSyntaxError.LONG_TOO_BIG;
-    }
+	getTooBigError() {
+		return CommandSyntaxError.LONG_TOO_BIG;
+	}
 }

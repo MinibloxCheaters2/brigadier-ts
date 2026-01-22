@@ -1,19 +1,19 @@
 import { StringRange } from "..";
 
 export class ParsedArgument<T> {
-    private range: StringRange;
-    private result: T;
-    
-    constructor(start: number, end: number, result: T) {
-        this.range = new StringRange(start, end);
-        this.result = result;
-    }
+	private range: StringRange;
+	private result: T;
 
-    getRange(): StringRange {
-        return this.range;
-    }
+	constructor(start: number, end: number, result: T) {
+		this.range = new StringRange(start, end);
+		this.result = result;
+	}
 
-    getResult(): T {
-        return this.result;
-    }
+	getRange(): StringRange {
+		return this.range;
+	}
+
+	getResult(): T {
+		return this.result;
+	}
 }

@@ -1,20 +1,19 @@
-import { StringReader, NumberArgumentType, CommandSyntaxError } from "..";
+import { type StringReader, NumberArgumentType, CommandSyntaxError } from "..";
 
 export class FloatArgumentType extends NumberArgumentType {
+	constructor(minimum = -Infinity, maximum = Infinity) {
+		super(minimum, maximum);
+	}
 
-    constructor(minimum = -Infinity, maximum = Infinity) {
-        super(minimum, maximum);
-    }
+	readNumber(reader: StringReader): number {
+		return reader.readFloat();
+	}
 
-    readNumber(reader: StringReader): number {
-        return reader.readFloat();
-    }
+	getTooSmallError() {
+		return CommandSyntaxError.FLOAT_TOO_SMALL;
+	}
 
-    getTooSmallError() {
-        return CommandSyntaxError.FLOAT_TOO_SMALL;
-    }
-
-    getTooBigError() {
-        return CommandSyntaxError.FLOAT_TOO_BIG;
-    }
+	getTooBigError() {
+		return CommandSyntaxError.FLOAT_TOO_BIG;
+	}
 }

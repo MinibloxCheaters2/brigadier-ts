@@ -1,20 +1,19 @@
-import { StringReader, NumberArgumentType, CommandSyntaxError } from "..";
+import { type StringReader, NumberArgumentType, CommandSyntaxError } from "..";
 
 export class IntegerArgumentType extends NumberArgumentType {
+	constructor(minimum = -2147483648, maximum = 2147483647) {
+		super(minimum, maximum);
+	}
 
-    constructor(minimum = -2147483648, maximum = 2147483647) {
-        super(minimum, maximum);
-    }
+	readNumber(reader: StringReader): number {
+		return reader.readInt();
+	}
 
-    readNumber(reader: StringReader): number {
-        return reader.readInt();
-    }
-    
-    getTooSmallError() {
-        return CommandSyntaxError.INTEGER_TOO_SMALL;
-    }
+	getTooSmallError() {
+		return CommandSyntaxError.INTEGER_TOO_SMALL;
+	}
 
-    getTooBigError() {
-        return CommandSyntaxError.INTEGER_TOO_BIG;
-    }
+	getTooBigError() {
+		return CommandSyntaxError.INTEGER_TOO_BIG;
+	}
 }

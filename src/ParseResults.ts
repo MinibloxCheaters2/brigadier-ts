@@ -1,30 +1,34 @@
-import {
-    CommandContextBuilder,
-    StringReader,
-    CommandNode,
-    CommandSyntaxError
+import type {
+	CommandContextBuilder,
+	StringReader,
+	CommandNode,
+	CommandSyntaxError,
 } from ".";
 
 export class ParseResults<S> {
-    private context: CommandContextBuilder<S>;
-    private reader: StringReader;
-    private errors: Map<CommandNode<S>, CommandSyntaxError>;
+	private context: CommandContextBuilder<S>;
+	private reader: StringReader;
+	private errors: Map<CommandNode<S>, CommandSyntaxError>;
 
-    constructor(context: CommandContextBuilder<S>, reader: StringReader, errors: Map<CommandNode<S>, CommandSyntaxError>) {
-        this.context = context;
-        this.reader = reader;
-        this.errors = errors;
-    }
+	constructor(
+		context: CommandContextBuilder<S>,
+		reader: StringReader,
+		errors: Map<CommandNode<S>, CommandSyntaxError>,
+	) {
+		this.context = context;
+		this.reader = reader;
+		this.errors = errors;
+	}
 
-    getContext(): CommandContextBuilder<S> {
-        return this.context;
-    }
+	getContext(): CommandContextBuilder<S> {
+		return this.context;
+	}
 
-    getReader(): StringReader {
-        return this.reader;
-    }
+	getReader(): StringReader {
+		return this.reader;
+	}
 
-    getErrors(): Map<CommandNode<S>, CommandSyntaxError> {
-        return this.errors;
-    }
+	getErrors(): Map<CommandNode<S>, CommandSyntaxError> {
+		return this.errors;
+	}
 }

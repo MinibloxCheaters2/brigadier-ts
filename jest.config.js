@@ -1,12 +1,12 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
-	extensionsToTreatAsEsm: ['.ts'],
+	extensionsToTreatAsEsm: [".ts"],
 	transform: {
-		'^.+\\.tsx?$': [
-			'esbuild-jest',
+		"^.+\\.tsx?$": [
+			"esbuild-jest",
 			{
-				format: 'esm',
+				format: "esm",
 			},
 		],
 	},
-}
+};

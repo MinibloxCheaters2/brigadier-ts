@@ -1,11 +1,11 @@
-import { CommandNode } from "..";
+import type { CommandNode } from "..";
 
 export class SuggestionContext<S> {
-    parent: CommandNode<S>;
-    startPos: number;
+	parent: CommandNode<S>;
+	startPos: number;
 
-    constructor(parent: CommandNode<S>, startPos: number) {
-        this.parent = parent;
-        this.startPos = startPos;
-    }
+	constructor(parent: CommandNode<S>, startPos: number) {
+		this.parent = parent;
+		this.startPos = startPos;
+	}
 }
