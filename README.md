@@ -3,6 +3,7 @@
 Fork of [brigadier-ts](https://github.com/misode/brigadier-ts) with some changes:
 
 - (breaking change) Predicates and Commands are async
+- Non-literal arguments don't unconditionally return empty suggestions (WHY DID THIS EXIST???)
 - Update branding
 
 (not many, but we'll probably add more later)
