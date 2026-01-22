@@ -1,6 +1,6 @@
 {
 	"name": "@wq2/brigadier-ts",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Fork of brigadier-ts with some extra changes",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
