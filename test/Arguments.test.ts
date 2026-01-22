@@ -3,8 +3,8 @@ import {
 	CommandDispatcher,
 	FloatArgumentType,
 	IntegerArgumentType,
-	literal,
 	LongArgumentType,
+	literal,
 } from "../src";
 
 describe("Arguments", () => {
@@ -13,7 +13,7 @@ describe("Arguments", () => {
 		dispatcher.register(
 			literal("foo").then(
 				argument("bar", new IntegerArgumentType()).executes(
-					async (ctx) => ctx.get("bar") * 2,
+					async (ctx) => ctx.get<number>("bar") * 2,
 				),
 			),
 		);
@@ -26,7 +26,7 @@ describe("Arguments", () => {
 		dispatcher.register(
 			literal("foo").then(
 				argument("bar", new LongArgumentType()).executes(
-					async (ctx) => ctx.get("bar").toString().length,
+					async (ctx) => ctx.get<bigint>("bar").toString().length,
 				),
 			),
 		);

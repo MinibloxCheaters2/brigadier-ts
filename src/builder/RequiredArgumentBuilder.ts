@@ -1,4 +1,4 @@
-import { ArgumentBuilder, type ArgumentType, ArgumentCommandNode } from "..";
+import { ArgumentBuilder, ArgumentCommandNode, type ArgumentType } from "..";
 
 export class RequiredArgumentBuilder<S, T> extends ArgumentBuilder<
 	S,
@@ -42,7 +42,7 @@ export class RequiredArgumentBuilder<S, T> extends ArgumentBuilder<
 	}
 }
 
-export function argument<S = any, T = any>(
+export function argument<S = unknown, T = unknown>(
 	name: string,
 	type: ArgumentType<T>,
 ): RequiredArgumentBuilder<S, T> {

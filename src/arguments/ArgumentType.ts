@@ -1,6 +1,6 @@
 import {
-	type StringReader,
 	type CommandContext,
+	type StringReader,
 	Suggestions,
 	type SuggestionsBuilder,
 } from "..";
@@ -10,7 +10,7 @@ export abstract class ArgumentType<T> {
 
 	listSuggestions(
 		// biome-ignore lint/correctness/noUnusedFunctionParameters: optional override
-		context: CommandContext<any>,
+		context: CommandContext<unknown>,
 		// biome-ignore lint/correctness/noUnusedFunctionParameters: optional override
 		builder: SuggestionsBuilder,
 	): Promise<Suggestions> {

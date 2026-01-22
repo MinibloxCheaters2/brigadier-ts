@@ -1,8 +1,8 @@
 import type {
 	CommandContextBuilder,
-	StringReader,
 	CommandNode,
 	CommandSyntaxError,
+	StringReader,
 } from ".";
 
 export class ParseResults<S> {

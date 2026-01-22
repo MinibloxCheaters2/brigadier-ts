@@ -1,4 +1,4 @@
-import { Suggestion, Suggestions, StringRange } from "..";
+import { StringRange, Suggestion, Suggestions } from "..";
 
 export class SuggestionsBuilder {
 	private input: string;

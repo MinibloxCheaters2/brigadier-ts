@@ -1,8 +1,8 @@
 import {
+	type CommandContext,
+	type CommandContextBuilder,
 	CommandNode,
 	type StringReader,
-	type CommandContextBuilder,
-	type CommandContext,
 	Suggestions,
 	type SuggestionsBuilder,
 } from "..";

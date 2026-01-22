@@ -1,8 +1,8 @@
-import { ArgumentType } from "./ArgumentType";
-import type { StringReader } from "../StringReader";
 import type { CommandContext } from "../context/CommandContext";
-import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import type { StringReader } from "../StringReader";
 import type { Suggestions } from "../suggestion/Suggestions";
+import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import { ArgumentType } from "./ArgumentType";
 
 export class BoolArgumentType extends ArgumentType<boolean> {
 	parse(reader: StringReader): boolean {
@@ -10,7 +10,7 @@ export class BoolArgumentType extends ArgumentType<boolean> {
 	}
 
 	listSuggestions(
-		_ctx: CommandContext<any>,
+		_ctx: CommandContext<unknown>,
 		builder: SuggestionsBuilder,
 	): Promise<Suggestions> {
 		if ("true".startsWith(builder.getRemaining().toLowerCase())) {

@@ -1,4 +1,4 @@
-import { ArgumentType, type StringReader, type CommandErrorType } from "..";
+import { ArgumentType, type CommandErrorType, type StringReader } from "..";
 
 export abstract class NumberArgumentType<
 	N extends number | bigint = number,

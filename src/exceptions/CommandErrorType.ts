@@ -1,6 +1,6 @@
 import { CommandSyntaxError, type StringReader } from "..";
 
-type CommandErrorFunction = (...args: any[]) => string;
+type CommandErrorFunction = <A = unknown>(...args: A[]) => string;
 
 export class CommandErrorType {
 	private func: CommandErrorFunction;

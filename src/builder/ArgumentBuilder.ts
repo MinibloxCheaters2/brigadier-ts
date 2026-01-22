@@ -1,9 +1,9 @@
 import {
-	CommandNode,
-	RootCommandNode,
 	type Command,
-	type Predicate,
 	type CommandContext,
+	CommandNode,
+	type Predicate,
+	RootCommandNode,
 } from "..";
 
 export type RedirectModifier<S> = (context: CommandContext<S>) => S | S[];
@@ -24,7 +24,7 @@ export abstract class ArgumentBuilder<S, T extends ArgumentBuilder<S, T>> {
 	abstract getThis(): T;
 
 	// biome-ignore lint/suspicious/noThenProperty: proof?
-	then(argument: ArgumentBuilder<S, any> | CommandNode<S>): T {
+	then(argument: ArgumentBuilder<S, unknown> | CommandNode<S>): T {
 		const child = argument instanceof CommandNode ? argument : argument.build();
 		this.arguments.addChild(child);
 		return this.getThis();

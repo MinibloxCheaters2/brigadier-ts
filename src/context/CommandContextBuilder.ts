@@ -1,18 +1,18 @@
 import {
-	type CommandNode,
-	type CommandDispatcher,
 	type Command,
 	CommandContext,
-	StringRange,
-	ParsedCommandNode,
+	type CommandDispatcher,
+	type CommandNode,
 	type ParsedArgument,
+	ParsedCommandNode,
 	type RedirectModifier,
+	StringRange,
 	SuggestionContext,
 } from "..";
 
 export class CommandContextBuilder<S> {
 	private source: S;
-	private arguments: Map<string, ParsedArgument<any>>;
+	private arguments: Map<string, ParsedArgument<unknown>>;
 	private rootNode: CommandNode<S>;
 	private dispatcher: CommandDispatcher<S>;
 	private command: Command<S>;
@@ -51,13 +51,13 @@ export class CommandContextBuilder<S> {
 
 	withArgument(
 		name: string,
-		argument: ParsedArgument<any>,
+		argument: ParsedArgument<unknown>,
 	): CommandContextBuilder<S> {
 		this.arguments.set(name, argument);
 		return this;
 	}
 
-	getArguments(): Map<string, ParsedArgument<any>> {
+	getArguments(): Map<string, ParsedArgument<unknown>> {
 		return this.arguments;
 	}
 

@@ -1,20 +1,20 @@
 import {
-	type StringReader,
-	type Command,
-	LiteralCommandNode,
 	ArgumentCommandNode,
+	type Command,
 	type CommandContext,
 	type CommandContextBuilder,
+	LiteralCommandNode,
 	type Predicate,
 	type RedirectModifier,
-	type SuggestionsBuilder,
+	type StringReader,
 	type Suggestions,
+	type SuggestionsBuilder,
 } from "..";
 
 export abstract class CommandNode<S> {
 	private children: Map<string, CommandNode<S>>;
 	private literals: Map<string, LiteralCommandNode<S>>;
-	private arguments: Map<string, ArgumentCommandNode<S, any>>;
+	private arguments: Map<string, ArgumentCommandNode<S, unknown>>;
 	private command: Command<S>;
 	private requirement: Predicate<S>;
 	private redirect: CommandNode<S>;

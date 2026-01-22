@@ -1,16 +1,16 @@
 import type {
 	Command,
 	CommandNode,
-	StringRange,
 	ParsedArgument,
 	ParsedCommandNode,
 	RedirectModifier,
+	StringRange,
 } from "..";
 
 export class CommandContext<S> {
 	private source: S;
 	private input: string;
-	private arguments: Map<string, ParsedArgument<any>>;
+	private arguments: Map<string, ParsedArgument<unknown>>;
 	private nodes: ParsedCommandNode<S>[];
 	private command: Command<S>;
 	private rootNode: CommandNode<S>;
@@ -22,7 +22,7 @@ export class CommandContext<S> {
 	constructor(
 		source: S,
 		input: string,
-		parsedArguments: Map<string, ParsedArgument<any>>,
+		parsedArguments: Map<string, ParsedArgument<unknown>>,
 		command: Command<S>,
 		rootNode: CommandNode<S>,
 		nodes: ParsedCommandNode<S>[],
@@ -85,10 +85,10 @@ export class CommandContext<S> {
 		return this.rootNode;
 	}
 
-	get(name: string): any {
+	get<R = unknown>(name: string): R {
 		const argument = this.arguments.get(name);
 		// TODO: Throw exception when argument is null
-		return argument.getResult();
+		return argument.getResult() as R;
 	}
 
 	getRedirectModifier(): RedirectModifier<S> {

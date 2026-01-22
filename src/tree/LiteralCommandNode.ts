@@ -1,13 +1,13 @@
 import {
-	CommandNode,
-	type StringReader,
 	type Command,
-	StringRange,
 	type CommandContext,
 	type CommandContextBuilder,
+	CommandNode,
+	CommandSyntaxError,
 	type Predicate,
 	type RedirectModifier,
-	CommandSyntaxError,
+	StringRange,
+	type StringReader,
 	Suggestions,
 	type SuggestionsBuilder,
 } from "..";

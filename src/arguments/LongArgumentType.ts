@@ -1,4 +1,4 @@
-import { type StringReader, NumberArgumentType, CommandSyntaxError } from "..";
+import { CommandSyntaxError, NumberArgumentType, type StringReader } from "..";
 
 export class LongArgumentType extends NumberArgumentType<bigint> {
 	private static readonly MIN = -9223372036854775808n;

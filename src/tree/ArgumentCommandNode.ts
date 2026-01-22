@@ -1,13 +1,13 @@
 import {
 	type ArgumentType,
-	CommandNode,
-	type StringReader,
 	type Command,
 	type CommandContext,
 	type CommandContextBuilder,
+	CommandNode,
+	ParsedArgument,
 	type Predicate,
 	type RedirectModifier,
-	ParsedArgument,
+	type StringReader,
 	type Suggestions,
 	type SuggestionsBuilder,
 } from "..";
