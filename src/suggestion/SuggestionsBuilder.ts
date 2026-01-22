@@ -1,4 +1,6 @@
-import { StringRange, Suggestion, Suggestions } from "..";
+import { StringRange } from "../context/StringRange";
+import { Suggestion } from "./Suggestion";
+import { Suggestions } from "./Suggestions";
 
 export class SuggestionsBuilder {
 	private input: string;

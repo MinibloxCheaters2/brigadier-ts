@@ -1,4 +1,5 @@
-import { ArgumentBuilder, LiteralCommandNode } from "..";
+import { LiteralCommandNode } from "../tree/LiteralCommandNode";
+import { ArgumentBuilder } from "./ArgumentBuilder";
 
 export class LiteralArgumentBuilder<S> extends ArgumentBuilder<
 	S,

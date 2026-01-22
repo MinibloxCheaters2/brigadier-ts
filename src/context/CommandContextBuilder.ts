@@ -1,14 +1,12 @@
-import {
-	type Command,
-	CommandContext,
-	type CommandDispatcher,
-	type CommandNode,
-	type ParsedArgument,
-	ParsedCommandNode,
-	type RedirectModifier,
-	StringRange,
-	SuggestionContext,
-} from "..";
+import type { RedirectModifier } from "../builder/ArgumentBuilder";
+import type { Command } from "../Command";
+import type { CommandDispatcher } from "../CommandDispatcher";
+import type { CommandNode } from "../tree/CommandNode";
+import { CommandContext } from "./CommandContext";
+import type { ParsedArgument } from "./ParsedArgument";
+import { ParsedCommandNode } from "./ParsedCommandNode";
+import { StringRange } from "./StringRange";
+import { SuggestionContext } from "./SuggestionContext";
 
 export class CommandContextBuilder<S> {
 	private source: S;

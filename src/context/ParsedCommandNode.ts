@@ -1,4 +1,5 @@
-import type { CommandNode, StringRange } from "..";
+import type { CommandNode } from "../tree/CommandNode";
+import type { StringRange } from "./StringRange";
 
 export class ParsedCommandNode<S> {
 	private node: CommandNode<S>;

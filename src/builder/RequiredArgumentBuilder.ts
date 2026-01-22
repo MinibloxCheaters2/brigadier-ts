@@ -1,4 +1,6 @@
-import { ArgumentBuilder, ArgumentCommandNode, type ArgumentType } from "..";
+import type { ArgumentType } from "../arguments/ArgumentType";
+import { ArgumentCommandNode } from "../tree/ArgumentCommandNode";
+import { ArgumentBuilder } from "./ArgumentBuilder";
 
 export class RequiredArgumentBuilder<S, T> extends ArgumentBuilder<
 	S,

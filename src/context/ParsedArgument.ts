@@ -1,4 +1,4 @@
-import { StringRange } from "..";
+import { StringRange } from "./StringRange";
 
 export class ParsedArgument<T> {
 	private range: StringRange;

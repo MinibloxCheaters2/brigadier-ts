@@ -1,11 +1,9 @@
-import {
-	type CommandContext,
-	type CommandContextBuilder,
-	CommandNode,
-	type StringReader,
-	Suggestions,
-	type SuggestionsBuilder,
-} from "..";
+import type { CommandContext } from "../context/CommandContext";
+import type { CommandContextBuilder } from "../context/CommandContextBuilder";
+import type { StringReader } from "../StringReader";
+import { Suggestions } from "../suggestion/Suggestions";
+import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import { CommandNode } from "./CommandNode";
 
 export class RootCommandNode<S> extends CommandNode<S> {
 	constructor() {

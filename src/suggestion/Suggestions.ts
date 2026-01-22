@@ -1,4 +1,5 @@
-import { StringRange, type Suggestion } from "..";
+import { StringRange } from "../context/StringRange";
+import type { Suggestion } from "./Suggestion";
 
 export class Suggestions {
 	static EMPTY = new Suggestions(StringRange.at(0), []);

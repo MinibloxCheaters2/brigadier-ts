@@ -1,10 +1,8 @@
-import {
-	type Command,
-	type CommandContext,
-	CommandNode,
-	type Predicate,
-	RootCommandNode,
-} from "..";
+import type { Command } from "../Command";
+import type { CommandContext } from "../context/CommandContext";
+import type { Predicate } from "../Predicate";
+import { CommandNode } from "../tree/CommandNode";
+import { RootCommandNode } from "../tree/RootCommandNode";
 
 export type RedirectModifier<S> = (context: CommandContext<S>) => S | S[];
 

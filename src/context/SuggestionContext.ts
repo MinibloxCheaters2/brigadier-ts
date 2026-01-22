@@ -1,4 +1,4 @@
-import type { CommandNode } from "..";
+import type { CommandNode } from "../tree/CommandNode";
 
 export class SuggestionContext<S> {
 	parent: CommandNode<S>;

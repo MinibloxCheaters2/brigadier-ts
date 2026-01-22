@@ -1,15 +1,12 @@
-import {
-	ArgumentCommandNode,
-	type Command,
-	type CommandContext,
-	type CommandContextBuilder,
-	LiteralCommandNode,
-	type Predicate,
-	type RedirectModifier,
-	type StringReader,
-	type Suggestions,
-	type SuggestionsBuilder,
-} from "..";
+import { ArgumentCommandNode, LiteralCommandNode } from "..";
+import type { RedirectModifier } from "../builder/ArgumentBuilder";
+import type { Command } from "../Command";
+import type { CommandContext } from "../context/CommandContext";
+import type { CommandContextBuilder } from "../context/CommandContextBuilder";
+import type { Predicate } from "../Predicate";
+import type { StringReader } from "../StringReader";
+import type { Suggestions } from "../suggestion/Suggestions";
+import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
 
 export abstract class CommandNode<S> {
 	private children: Map<string, CommandNode<S>>;

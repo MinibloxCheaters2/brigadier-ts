@@ -1,11 +1,9 @@
-import type {
-	Command,
-	CommandNode,
-	ParsedArgument,
-	ParsedCommandNode,
-	RedirectModifier,
-	StringRange,
-} from "..";
+import type { RedirectModifier } from "../builder/ArgumentBuilder";
+import type { Command } from "../Command";
+import type { CommandNode } from "../tree/CommandNode";
+import type { ParsedArgument } from "./ParsedArgument";
+import type { ParsedCommandNode } from "./ParsedCommandNode";
+import type { StringRange } from "./StringRange";
 
 export class CommandContext<S> {
 	private source: S;

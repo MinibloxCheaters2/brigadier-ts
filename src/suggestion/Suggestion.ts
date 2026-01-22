@@ -1,4 +1,4 @@
-import type { StringRange } from "..";
+import type { StringRange } from "../context/StringRange";
 
 export class Suggestion {
 	private range: StringRange;

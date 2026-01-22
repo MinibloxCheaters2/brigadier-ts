@@ -1,16 +1,14 @@
-import {
-	type Command,
-	type CommandContext,
-	type CommandContextBuilder,
-	CommandNode,
-	CommandSyntaxError,
-	type Predicate,
-	type RedirectModifier,
-	StringRange,
-	type StringReader,
-	Suggestions,
-	type SuggestionsBuilder,
-} from "..";
+import type { RedirectModifier } from "../builder/ArgumentBuilder";
+import type { Command } from "../Command";
+import type { CommandContext } from "../context/CommandContext";
+import type { CommandContextBuilder } from "../context/CommandContextBuilder";
+import { StringRange } from "../context/StringRange";
+import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import type { Predicate } from "../Predicate";
+import type { StringReader } from "../StringReader";
+import { Suggestions } from "../suggestion/Suggestions";
+import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import { CommandNode } from "./CommandNode";
 
 export class LiteralCommandNode<S> extends CommandNode<S> {
 	private literal: string;

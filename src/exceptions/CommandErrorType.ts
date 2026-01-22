@@ -1,4 +1,5 @@
-import { CommandSyntaxError, type StringReader } from "..";
+import type { StringReader } from "../StringReader";
+import { CommandSyntaxError } from "./CommandSyntaxError";
 
 type CommandErrorFunction = <A = unknown>(...args: A[]) => string;
 

@@ -1,4 +1,5 @@
-import { ArgumentType, type StringReader } from "..";
+import type { StringReader } from "../StringReader";
+import { ArgumentType } from "./ArgumentType";
 
 type StringType = "single_word" | "quotable_phrase" | "greedy_phrase";
 

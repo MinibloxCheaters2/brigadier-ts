@@ -1,4 +1,6 @@
-import { CommandSyntaxError, NumberArgumentType, type StringReader } from "..";
+import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import type { StringReader } from "../StringReader";
+import { NumberArgumentType } from "./NumberArgumentType";
 
 export class IntegerArgumentType extends NumberArgumentType {
 	constructor(minimum = -2147483648, maximum = 2147483647) {

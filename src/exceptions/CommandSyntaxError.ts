@@ -1,4 +1,4 @@
-import { CommandErrorType } from "..";
+import { CommandErrorType } from "./CommandErrorType";
 
 const CONTEXT_AMOUNT = 10;
 

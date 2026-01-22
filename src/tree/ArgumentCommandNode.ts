@@ -1,16 +1,14 @@
-import {
-	type ArgumentType,
-	type Command,
-	type CommandContext,
-	type CommandContextBuilder,
-	CommandNode,
-	ParsedArgument,
-	type Predicate,
-	type RedirectModifier,
-	type StringReader,
-	type Suggestions,
-	type SuggestionsBuilder,
-} from "..";
+import type { ArgumentType } from "../arguments/ArgumentType";
+import type { RedirectModifier } from "../builder/ArgumentBuilder";
+import type { Command } from "../Command";
+import type { CommandContext } from "../context/CommandContext";
+import type { CommandContextBuilder } from "../context/CommandContextBuilder";
+import { ParsedArgument } from "../context/ParsedArgument";
+import type { Predicate } from "../Predicate";
+import type { StringReader } from "../StringReader";
+import type { Suggestions } from "../suggestion/Suggestions";
+import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import { CommandNode } from "./CommandNode";
 
 export class ArgumentCommandNode<S, T> extends CommandNode<S> {
 	name: string;
