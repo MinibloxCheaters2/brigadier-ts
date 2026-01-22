@@ -1,6 +1,5 @@
 import {
 	argument,
-	bool,
 	CommandDispatcher,
 	FloatArgumentType,
 	IntegerArgumentType,

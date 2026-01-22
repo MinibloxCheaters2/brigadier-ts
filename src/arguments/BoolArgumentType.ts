@@ -10,15 +10,14 @@ export class BoolArgumentType extends ArgumentType<boolean> {
 	}
 
 	listSuggestions(
-		// biome-ignore lint/correctness/noUnusedFunctionParameters: optional override
-		context: CommandContext<any>,
+		_ctx: CommandContext<any>,
 		builder: SuggestionsBuilder,
 	): Promise<Suggestions> {
 		if ("true".startsWith(builder.getRemaining().toLowerCase())) {
-			builder.suggest("true");
+			return builder.suggest("true").buildPromise();
 		}
 		if ("false".startsWith(builder.getRemaining().toLowerCase())) {
-			builder.suggest("false");
+			return builder.suggest("false").buildPromise();
 		}
 		return builder.buildPromise();
 	}
