@@ -1,15 +1,13 @@
-import {
-	CommandContextBuilder,
-	type CommandNode,
-	CommandSyntaxError,
-	type LiteralArgumentBuilder,
-	type LiteralCommandNode,
-	ParseResults,
-	RootCommandNode,
-	StringReader,
-	Suggestions,
-	SuggestionsBuilder,
-} from ".";
+import type { LiteralArgumentBuilder } from "./builder/LiteralArgumentBuilder";
+import { CommandContextBuilder } from "./context/CommandContextBuilder";
+import { CommandSyntaxError } from "./exceptions/CommandSyntaxError";
+import { ParseResults } from "./ParseResults";
+import { StringReader } from "./StringReader";
+import { Suggestions } from "./suggestion/Suggestions";
+import { SuggestionsBuilder } from "./suggestion/SuggestionsBuilder";
+import type { CommandNode } from "./tree/CommandNode";
+import type { LiteralCommandNode } from "./tree/LiteralCommandNode";
+import { RootCommandNode } from "./tree/RootCommandNode";
 
 export class CommandDispatcher<S> {
 	private root: RootCommandNode<S>;
