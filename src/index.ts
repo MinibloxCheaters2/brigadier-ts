@@ -18,6 +18,7 @@ export * from "./context/StringRange";
 export * from "./context/SuggestionContext";
 export * from "./exceptions/CommandErrorType";
 export * from "./exceptions/CommandSyntaxError";
+export * from "./exceptions/StandardErrorTypes";
 export * from "./ParseResults";
 export * from "./Predicate";
 export * from "./StringReader";
