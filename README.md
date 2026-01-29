@@ -9,6 +9,10 @@ Fork of [brigadier-ts](https://github.com/misode/brigadier-ts) with some changes
 
 (not many, but we'll probably add more later)
 
+## Migration from original
+
+See [our wiki page](https://github.com/MinibloxCheaters2/brigadier-ts/wiki/Migrating-from-Misode-brigadier%E2%80%90ts)
+
 ## Installation
 
 ```
