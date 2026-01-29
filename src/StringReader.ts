@@ -1,4 +1,4 @@
-import { CommandSyntaxError } from "./exceptions/CommandSyntaxError";
+import { READER_EXPECTED_BOOL, READER_EXPECTED_END_OF_QUOTE, READER_EXPECTED_FLOAT, READER_EXPECTED_INT, READER_INVALID_BOOL, READER_INVALID_ESCAPE, READER_INVALID_FLOAT, READER_INVALID_INT } from "./exceptions/StandardErrorTypes";
 
 export class StringReader {
 	private string: string;
@@ -71,7 +71,7 @@ export class StringReader {
 		}
 		const number = this.string.substring(start, this.cursor);
 		if (number.length === 0) {
-			throw CommandSyntaxError.READER_EXPECTED_INT.createWithContext(this);
+			throw READER_EXPECTED_INT.createWithContext(this);
 		}
 		try {
 			const value = Number(number);
@@ -81,10 +81,7 @@ export class StringReader {
 			return value;
 		} catch (_) {
 			this.cursor = start;
-			throw CommandSyntaxError.READER_INVALID_INT.createWithContext(
-				this,
-				number,
-			);
+			throw READER_INVALID_INT.createWithContext(this, number);
 		}
 	}
 
@@ -95,16 +92,13 @@ export class StringReader {
 		}
 		const number = this.string.substring(start, this.cursor);
 		if (number.length === 0) {
-			throw CommandSyntaxError.READER_EXPECTED_INT.createWithContext(this);
+			throw READER_EXPECTED_INT.createWithContext(this);
 		}
 		try {
 			return BigInt(number);
 		} catch (_) {
 			this.cursor = start;
-			throw CommandSyntaxError.READER_INVALID_INT.createWithContext(
-				this,
-				number,
-			);
+			throw READER_INVALID_INT.createWithContext(this, number);
 		}
 	}
 
@@ -115,7 +109,7 @@ export class StringReader {
 		}
 		const number = this.string.substring(start, this.cursor);
 		if (number.length === 0) {
-			throw CommandSyntaxError.READER_EXPECTED_FLOAT.createWithContext(this);
+			throw READER_EXPECTED_FLOAT.createWithContext(this);
 		}
 		try {
 			const value = Number(number);
@@ -125,10 +119,7 @@ export class StringReader {
 			return value;
 		} catch (_e) {
 			this.cursor = start;
-			throw CommandSyntaxError.READER_INVALID_FLOAT.createWithContext(
-				this,
-				number,
-			);
+			throw READER_INVALID_FLOAT.createWithContext(this, number);
 		}
 	}
 
@@ -167,10 +158,7 @@ export class StringReader {
 					escaped = false;
 				} else {
 					this.setCursor(this.cursor - 1);
-					throw CommandSyntaxError.READER_INVALID_ESCAPE.createWithContext(
-						this,
-						c,
-					);
+					throw READER_INVALID_ESCAPE.createWithContext(this, c);
 				}
 			} else if (c === "\\") {
 				escaped = true;
@@ -180,9 +168,7 @@ export class StringReader {
 				result.push(c);
 			}
 		}
-		throw CommandSyntaxError.READER_EXPECTED_END_OF_QUOTE.createWithContext(
-			this,
-		);
+		throw READER_EXPECTED_END_OF_QUOTE.createWithContext(this);
 	}
 
 	readString(): string {
@@ -200,17 +186,14 @@ export class StringReader {
 	readBoolean(): boolean {
 		const value = this.readUnquotedString();
 		if (value.length === 0) {
-			throw CommandSyntaxError.READER_EXPECTED_BOOL.createWithContext(this);
+			throw READER_EXPECTED_BOOL.createWithContext(this);
 		}
 		if (value === "true") {
 			return true;
 		} else if (value === "false") {
 			return false;
 		} else {
-			throw CommandSyntaxError.READER_INVALID_BOOL.createWithContext(
-				this,
-				value,
-			);
+			throw READER_INVALID_BOOL.createWithContext(this, value);
 		}
 	}
 }

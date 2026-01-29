@@ -3,7 +3,7 @@ import type { Command } from "../Command";
 import type { CommandContext } from "../context/CommandContext";
 import type { CommandContextBuilder } from "../context/CommandContextBuilder";
 import { StringRange } from "../context/StringRange";
-import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import { LITERAL_INCORRECT } from "../exceptions/StandardErrorTypes";
 import type { Predicate } from "../Predicate";
 import type { StringReader } from "../StringReader";
 import { Suggestions } from "../suggestion/Suggestions";
@@ -34,7 +34,7 @@ export class LiteralCommandNode<S> extends CommandNode<S> {
 			contextBuilder.withNode(this, new StringRange(start, end));
 			return;
 		}
-		throw CommandSyntaxError.LITERAL_INCORRECT.createWithContext(
+		throw LITERAL_INCORRECT.createWithContext(
 			reader,
 			this.literal,
 		);

@@ -1,4 +1,4 @@
-import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import { FLOAT_TOO_BIG, FLOAT_TOO_SMALL } from "../exceptions/StandardErrorTypes";
 import type { StringReader } from "../StringReader";
 import { NumberArgumentType } from "./NumberArgumentType";
 
@@ -12,10 +12,10 @@ export class FloatArgumentType extends NumberArgumentType {
 	}
 
 	getTooSmallError() {
-		return CommandSyntaxError.FLOAT_TOO_SMALL;
+		return FLOAT_TOO_SMALL;
 	}
 
 	getTooBigError() {
-		return CommandSyntaxError.FLOAT_TOO_BIG;
+		return FLOAT_TOO_BIG;
 	}
 }

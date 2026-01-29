@@ -1,4 +1,4 @@
-import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import { LONG_TOO_BIG, LONG_TOO_SMALL } from "../exceptions/StandardErrorTypes";
 import type { StringReader } from "../StringReader";
 import { NumberArgumentType } from "./NumberArgumentType";
 
@@ -15,10 +15,10 @@ export class LongArgumentType extends NumberArgumentType<bigint> {
 	}
 
 	getTooSmallError() {
-		return CommandSyntaxError.LONG_TOO_SMALL;
+		return LONG_TOO_SMALL;
 	}
 
 	getTooBigError() {
-		return CommandSyntaxError.LONG_TOO_BIG;
+		return LONG_TOO_BIG;
 	}
 }

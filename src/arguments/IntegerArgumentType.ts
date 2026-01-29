@@ -1,4 +1,4 @@
-import { CommandSyntaxError } from "../exceptions/CommandSyntaxError";
+import { INTEGER_TOO_BIG, INTEGER_TOO_SMALL } from "../exceptions/StandardErrorTypes";
 import type { StringReader } from "../StringReader";
 import { NumberArgumentType } from "./NumberArgumentType";
 
@@ -12,10 +12,10 @@ export class IntegerArgumentType extends NumberArgumentType {
 	}
 
 	getTooSmallError() {
-		return CommandSyntaxError.INTEGER_TOO_SMALL;
+		return INTEGER_TOO_SMALL;
 	}
 
 	getTooBigError() {
-		return CommandSyntaxError.INTEGER_TOO_BIG;
+		return INTEGER_TOO_BIG;
 	}
 }

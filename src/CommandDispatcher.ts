@@ -1,6 +1,7 @@
 import type { LiteralArgumentBuilder } from "./builder/LiteralArgumentBuilder";
 import { CommandContextBuilder } from "./context/CommandContextBuilder";
 import { CommandSyntaxError } from "./exceptions/CommandSyntaxError";
+import { DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR, DISPATCHER_PARSE_ERROR, DISPATCHER_UNKNOWN_ARGUMENT, DISPATCHER_UNKNOWN_COMMAND } from "./exceptions/StandardErrorTypes";
 import { ParseResults } from "./ParseResults";
 import { StringReader } from "./StringReader";
 import { Suggestions } from "./suggestion/Suggestions";
@@ -37,13 +38,9 @@ export class CommandDispatcher<S> {
 			if (parse.getErrors().size === 1) {
 				throw parse.getErrors().values().next();
 			} else if (parse.getContext().getRange().isEmpty()) {
-				throw CommandSyntaxError.DISPATCHER_UNKNOWN_COMMAND.createWithContext(
-					parse.getReader(),
-				);
+				throw DISPATCHER_UNKNOWN_COMMAND.createWithContext(parse.getReader());
 			} else {
-				throw CommandSyntaxError.DISPATCHER_UNKNOWN_ARGUMENT.createWithContext(
-					parse.getReader(),
-				);
+				throw DISPATCHER_UNKNOWN_ARGUMENT.createWithContext(parse.getReader());
 			}
 		}
 
@@ -95,9 +92,7 @@ export class CommandDispatcher<S> {
 		}
 
 		if (!foundCommand) {
-			throw CommandSyntaxError.DISPATCHER_UNKNOWN_COMMAND.createWithContext(
-				parse.getReader(),
-			);
+			throw DISPATCHER_UNKNOWN_COMMAND.createWithContext(parse.getReader());
 		}
 		return forked ? successfulForks : result;
 	}
@@ -140,14 +135,11 @@ export class CommandDispatcher<S> {
 					if (e instanceof CommandSyntaxError) {
 						throw e;
 					} else {
-						throw CommandSyntaxError.DISPATCHER_PARSE_ERROR.createWithContext(
-							reader,
-							e.message,
-						);
+						throw DISPATCHER_PARSE_ERROR.createWithContext(reader, e.message);
 					}
 				}
 				if (reader.canRead() && reader.peek() !== " ") {
-					throw CommandSyntaxError.DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR.createWithContext(
+					throw DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR.createWithContext(
 						reader,
 					);
 				}
