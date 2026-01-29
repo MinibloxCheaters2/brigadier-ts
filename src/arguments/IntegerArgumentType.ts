@@ -1,4 +1,7 @@
-import { INTEGER_TOO_BIG, INTEGER_TOO_SMALL } from "../exceptions/StandardErrorTypes";
+import {
+	INTEGER_TOO_BIG,
+	INTEGER_TOO_SMALL,
+} from "../exceptions/StandardErrorTypes";
 import type { StringReader } from "../StringReader";
 import { NumberArgumentType } from "./NumberArgumentType";
 

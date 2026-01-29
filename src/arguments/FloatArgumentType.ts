@@ -1,4 +1,7 @@
-import { FLOAT_TOO_BIG, FLOAT_TOO_SMALL } from "../exceptions/StandardErrorTypes";
+import {
+	FLOAT_TOO_BIG,
+	FLOAT_TOO_SMALL,
+} from "../exceptions/StandardErrorTypes";
 import type { StringReader } from "../StringReader";
 import { NumberArgumentType } from "./NumberArgumentType";
 

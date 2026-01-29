@@ -1,7 +1,12 @@
 import type { LiteralArgumentBuilder } from "./builder/LiteralArgumentBuilder";
 import { CommandContextBuilder } from "./context/CommandContextBuilder";
 import { CommandSyntaxError } from "./exceptions/CommandSyntaxError";
-import { DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR, DISPATCHER_PARSE_ERROR, DISPATCHER_UNKNOWN_ARGUMENT, DISPATCHER_UNKNOWN_COMMAND } from "./exceptions/StandardErrorTypes";
+import {
+	DISPATCHER_EXPECTED_ARGUMENT_SEPARATOR,
+	DISPATCHER_PARSE_ERROR,
+	DISPATCHER_UNKNOWN_ARGUMENT,
+	DISPATCHER_UNKNOWN_COMMAND,
+} from "./exceptions/StandardErrorTypes";
 import { ParseResults } from "./ParseResults";
 import { StringReader } from "./StringReader";
 import { Suggestions } from "./suggestion/Suggestions";

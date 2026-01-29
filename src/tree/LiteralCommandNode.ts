@@ -34,10 +34,7 @@ export class LiteralCommandNode<S> extends CommandNode<S> {
 			contextBuilder.withNode(this, new StringRange(start, end));
 			return;
 		}
-		throw LITERAL_INCORRECT.createWithContext(
-			reader,
-			this.literal,
-		);
+		throw LITERAL_INCORRECT.createWithContext(reader, this.literal);
 	}
 
 	private parseInternal(reader: StringReader): number {
