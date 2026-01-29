@@ -9,9 +9,11 @@ import type { StringReader } from "../StringReader";
 import { Suggestions } from "../suggestion/Suggestions";
 import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
 import { CommandNode } from "./CommandNode";
+import CommandNodeThing from "./internal2";
 
 export class LiteralCommandNode<S> extends CommandNode<S> {
 	private literal: string;
+	_thing: CommandNodeThing = CommandNodeThing.LITERAL;
 
 	constructor(
 		literal: string,

@@ -9,10 +9,12 @@ import type { StringReader } from "../StringReader";
 import type { Suggestions } from "../suggestion/Suggestions";
 import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
 import { CommandNode } from "./CommandNode";
+import CommandNodeThing from "./internal2";
 
 export class ArgumentCommandNode<S, T> extends CommandNode<S> {
 	name: string;
 	type: ArgumentType<T>;
+	_thing: CommandNodeThing = CommandNodeThing.ARGUMENT;
 
 	constructor(
 		name: string,

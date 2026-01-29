@@ -4,6 +4,7 @@ Fork of [brigadier-ts](https://github.com/misode/brigadier-ts) with some changes
 
 - (breaking change) Predicates and Commands are async
 - Non-literal arguments don't unconditionally return empty suggestions (WHY DID THIS EXIST???)
+- No circular dependencies
 - Update branding
 
 (not many, but we'll probably add more later)
@@ -24,7 +25,7 @@ import {
     IntegerArgumentType,
     literal,
     argument
-} from "brigadier-ts";
+} from "@wq2/brigadier-ts";
 
 class CommandSource {
     private a: number;
@@ -62,7 +63,7 @@ import {
     IntegerArgumentType,
     literal,
     argument
-} from "brigadier-ts";
+} from "@wq2/brigadier-ts";
 
 const dispatcher = new CommandDispatcher<number>();
 const execute = dispatcher.register(literal("execute"));
@@ -100,7 +101,7 @@ import {
     IntegerArgumentType,
     literal,
     argument
-} from "brigadier-ts";
+} from "@wq2/brigadier-ts";
 
 const dispatcher = new CommandDispatcher<number>();
 dispatcher.register(literal("double")

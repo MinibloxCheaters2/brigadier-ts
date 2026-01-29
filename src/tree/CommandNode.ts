@@ -1,4 +1,4 @@
-import { ArgumentCommandNode, LiteralCommandNode } from "..";
+import type { ArgumentCommandNode, LiteralCommandNode } from "..";
 import type { RedirectModifier } from "../builder/ArgumentBuilder";
 import type { Command } from "../Command";
 import type { CommandContext } from "../context/CommandContext";
@@ -7,6 +7,7 @@ import type { Predicate } from "../Predicate";
 import type { StringReader } from "../StringReader";
 import type { Suggestions } from "../suggestion/Suggestions";
 import type { SuggestionsBuilder } from "../suggestion/SuggestionsBuilder";
+import CommandNodeThing from "./internal2";
 
 export abstract class CommandNode<S> {
 	private children: Map<string, CommandNode<S>>;
@@ -17,6 +18,13 @@ export abstract class CommandNode<S> {
 	private redirect: CommandNode<S>;
 	private modifier: RedirectModifier<S>;
 	private forks: boolean;
+	/**
+	 * This is used for detecting what type of command node this is, without having circular dependencies.
+	 * @internal
+	 * @hidden
+	 * @protected
+	 */
+	_thing: CommandNodeThing = CommandNodeThing.UNSPECIFIED;
 
 	constructor(
 		command: Command<S>,
@@ -74,10 +82,13 @@ export abstract class CommandNode<S> {
 			});
 		} else {
 			this.children.set(node.getName(), node);
-			if (node instanceof LiteralCommandNode) {
-				this.literals.set(node.getName(), node);
-			} else if (node instanceof ArgumentCommandNode) {
-				this.arguments.set(node.getName(), node);
+			if (node._thing === CommandNodeThing.LITERAL) {
+				this.literals.set(node.getName(), node as LiteralCommandNode<S>);
+			} else if (node._thing === CommandNodeThing.ARGUMENT) {
+				this.arguments.set(
+					node.getName(),
+					node as ArgumentCommandNode<S, unknown>,
+				);
 			}
 		}
 	}
