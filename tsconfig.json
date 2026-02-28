@@ -1,10 +1,11 @@
 {
 	"compilerOptions": {
 		"target": "es2020",
-		"module": "commonjs",
+		"module": "esnext",
 		"lib": ["ES2020", "dom"],
 		"declaration": true,
-		"outDir": "dist"
+		"outDir": "dist",
+		"incremental": true
 	},
 	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
