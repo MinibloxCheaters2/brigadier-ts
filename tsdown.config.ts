@@ -6,5 +6,5 @@ export default defineConfig({
 	target: "es2020",
 	unbundle: true,
 	sourcemap: true,
-    minify: true
+	minify: true,
 });
